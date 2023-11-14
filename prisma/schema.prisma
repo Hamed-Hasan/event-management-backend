@@ -93,3 +93,20 @@ model Booking {
 
   @@map("bookings")
 }
+
+// payment model
+model Payment {
+  id        String  @id @default(uuid())
+  amount    Float
+  currency  String
+  paymentId String
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  bookingId String
+  booking   Booking @relation(fields: [bookingId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("payments")
+}
