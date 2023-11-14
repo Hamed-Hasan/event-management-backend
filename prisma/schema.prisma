@@ -182,3 +182,38 @@ model Pages {
 
   @@map("pages")
 }
+
+model Subscriber {
+  id    String @id @default(uuid())
+  email String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("subscribers")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+enum Gender {
+  male
+  female
+  others
+}
+
+enum EventStatus {
+  upcoming
+  ongoing
+  ended
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  canceled
+  completed
+}
