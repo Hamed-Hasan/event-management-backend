@@ -35,3 +35,38 @@ model User {
   @@map("users")
 }
 
+model Category {
+  id     String  @id @default(uuid())
+  name   String  @unique
+  events Event[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("categories")
+}
+
+model Event {
+  id          String      @id @default(uuid())
+  title       String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  location    String
+  price       Float
+  image       String
+  status      EventStatus @default(upcoming)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  categoryId String
+  categories Category @relation(fields: [categoryId], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+  reviews   Review[]
+
+  @@map("events")
+}
