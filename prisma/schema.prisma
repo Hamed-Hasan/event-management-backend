@@ -70,3 +70,26 @@ model Event {
 
   @@map("events")
 }
+
+model Booking {
+  id          String        @id @default(uuid())
+  status      BookingStatus @default(pending)
+  startDate   DateTime
+  endDate     DateTime
+  adults      Int           @default(1)
+  childrens   Int           @default(0)
+  email       String
+  contactNo   String
+  daysBooked  Int
+  totalAmount Float
+  userId      String
+  user        User          @relation(fields: [userId], references: [id])
+  eventId     String
+  event       Event         @relation(fields: [eventId], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  payments  Payment[]
+
+  @@map("bookings")
+}
