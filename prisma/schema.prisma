@@ -110,3 +110,34 @@ model Payment {
 
   @@map("payments")
 }
+
+model Review {
+  id     String @id @default(uuid())
+  review String
+  rating Float
+
+  userId  String
+  user    User   @relation(fields: [userId], references: [id])
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reviews")
+}
+
+model BlogPost {
+  id      String @id @default(uuid())
+  title   String
+  content String
+  image   String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blog_posts")
+}
