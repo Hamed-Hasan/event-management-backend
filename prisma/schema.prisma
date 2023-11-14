@@ -141,3 +141,30 @@ model BlogPost {
 
   @@map("blog_posts")
 }
+
+model FAQ {
+  id       String @id @default(uuid())
+  question String
+  answer   String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faqs")
+}
+
+model Feedback {
+  id       String @id @default(uuid())
+  feedback String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("feedback")
+}
