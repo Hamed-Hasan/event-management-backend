@@ -1,0 +1,219 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @default(uuid())
+  email      String     @unique
+  password   String
+  firstName  String
+  lastName   String
+  contactNo  String     @unique
+  role       UserRole   @default(USER)
+  gender     Gender     @default(male)
+  profileImg String?
+  reviews    Review[]
+  bookings   Booking[]
+  blogPosts  BlogPost[]
+  FAQs       FAQ[]
+  events     Event[]
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  feedbacks Feedback[]
+  pages     Pages[]
+  payments  Payment[]
+
+  @@map("users")
+}
+
+model Category {
+  id     String  @id @default(uuid())
+  name   String  @unique
+  events Event[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("categories")
+}
+
+model Event {
+  id          String      @id @default(uuid())
+  title       String
+  description String
+  startDate   DateTime
+  endDate     DateTime
+  location    String
+  price       Float
+  image       String
+  status      EventStatus @default(upcoming)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  categoryId String
+  categories Category @relation(fields: [categoryId], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  bookings  Booking[]
+  reviews   Review[]
+
+  @@map("events")
+}
+
+model Booking {
+  id          String        @id @default(uuid())
+  status      BookingStatus @default(pending)
+  startDate   DateTime
+  endDate     DateTime
+  adults      Int           @default(1)
+  childrens   Int           @default(0)
+  email       String
+  contactNo   String
+  daysBooked  Int
+  totalAmount Float
+  userId      String
+  user        User          @relation(fields: [userId], references: [id])
+  eventId     String
+  event       Event         @relation(fields: [eventId], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  payments  Payment[]
+
+  @@map("bookings")
+}
+
+// payment model
+model Payment {
+  id        String  @id @default(uuid())
+  amount    Float
+  currency  String
+  paymentId String
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  bookingId String
+  booking   Booking @relation(fields: [bookingId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("payments")
+}
+
+model Review {
+  id     String @id @default(uuid())
+  review String
+  rating Float
+
+  userId  String
+  user    User   @relation(fields: [userId], references: [id])
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reviews")
+}
+
+model BlogPost {
+  id      String @id @default(uuid())
+  title   String
+  content String
+  image   String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blog_posts")
+}
+
+model FAQ {
+  id       String @id @default(uuid())
+  question String
+  answer   String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faqs")
+}
+
+model Feedback {
+  id       String @id @default(uuid())
+  feedback String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("feedback")
+}
+
+model Pages {
+  id      String @id @default(uuid())
+  title   String
+  content String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("pages")
+}
+
+model Subscriber {
+  id    String @id @default(uuid())
+  email String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("subscribers")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  USER
+}
+
+enum Gender {
+  male
+  female
+  others
+}
+
+enum EventStatus {
+  upcoming
+  ongoing
+  ended
+}
+
+enum BookingStatus {
+  pending
+  confirmed
+  canceled
+  completed
+}
