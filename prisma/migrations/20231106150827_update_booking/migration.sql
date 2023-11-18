@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "bookings" ALTER COLUMN "contactNo" DROP DEFAULT,
+ALTER COLUMN "email" DROP DEFAULT;
