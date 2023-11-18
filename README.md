@@ -2,15 +2,19 @@
 
 **View the live site [here](https://green-ecovents.vercel.app).**
 
-Welcome to the GreenEcovents Back End repository! This repository hosts the server-side implementation of the GreenEcovents project, a sophisticated event management web application.
+## Embrace the Heartbeat of GreenEcovents
 
-## Overview
+Welcome to the soulful core of GreenEcovents! 🌿 This repository cradles the intricate symphony of the server side, a masterpiece crafted by a lone dream-weaver immersed in the enchanting realms of TypeScript, Node.js, and Express.js. It's not just a backend; it's the pulsating heart of a visionary event management web application.
 
-GreenEcovents boasts a robust back end meticulously crafted by a solo developer using cutting-edge technologies such as TypeScript, Node.js, Express.js, and a PostgreSQL database. This back end seamlessly supports user authentication, event management, content administration, and more.
+## Unveiling the Magic
 
-## What I Did
+GreenEcovents is more than code; it's a journey. Picture a lone developer, navigating the digital wilderness, sculpting this marvel with the grace of TypeScript, the power of Node.js, and the expressiveness of Express.js. The backdrop? A PostgreSQL canvas, where every line of code weaves a tale of user authentication, event orchestration, and dynamic content choreography.
 
-As the sole developer, I led the entire back-end development of GreenEcovents. My responsibilities included user management, event handling, and dynamic content management. Specifically, my contributions include:
+## Symphony of Contribution
+
+As the maestro behind the curtain, I orchestrated the entire backend symphony for GreenEcovents. My canvas embraced the responsibilities of user management, the choreography of event handling, and the dynamic narration of content administration. Each keystroke, a note; every commit, a melody. Here’s a glimpse of my contributions:
+
+
 
 
 
@@ -142,7 +146,112 @@ As the sole developer, I led the entire back-end development of GreenEcovents. M
 +---------------------+
 ```
 
-# API END POINTS & DATA
+# GreenEcovents API Endpoints
+
+### Main Route
+- **/api/v1:** Root route to include all sub-routes.
+
+### Auth Routes
+- **POST /signup:** Register a new user.
+- **POST /login:** Log in a user.
+- **POST /refresh-token:** Refresh the authentication token.
+- **PATCH /change-password:** Change the password of a user.
+- **POST /logout:** Log out a user.
+
+### Admin Routes
+- **POST /make-admin:** Make a user an admin (requires SUPER_ADMIN role).
+- **PATCH /:id:** Update admin details (requires SUPER_ADMIN role).
+- **GET /:** Get all admins (requires SUPER_ADMIN role).
+- **DELETE /:id:** Delete an admin (requires SUPER_ADMIN role).
+
+### Blog Routes
+- **POST /:** Create a new blog (requires ADMIN or SUPER_ADMIN role).
+- **GET /user:** Get blogs by user (requires ADMIN, SUPER_ADMIN, or USER role).
+- **GET /:** Get all blogs.
+- **GET /:id:** Get a single blog.
+- **PATCH /:id:** Update a blog (requires ADMIN or SUPER_ADMIN role).
+- **DELETE /:id:** Delete a blog (requires ADMIN or SUPER_ADMIN role).
+
+### Booking Routes
+- **POST /create-payment-intents:** Create payment intents for booking (requires ADMIN, SUPER_ADMIN, or USER role).
+- **POST /:** Create a new booking (requires ADMIN, SUPER_ADMIN, or USER role).
+- **POST /confirm:** Confirm a booking (requires ADMIN, SUPER_ADMIN, or USER role).
+- **POST /get-data:** Get booking data (requires ADMIN or SUPER_ADMIN role).
+- **GET /payment-details/:id:** Get payment details for a booking (requires ADMIN, SUPER_ADMIN, or USER role).
+- **GET /:** Get all bookings (requires ADMIN or SUPER_ADMIN role).
+- **GET /user:** Get bookings by user (requires USER role).
+- **GET /:id:** Get a single booking (requires ADMIN, SUPER_ADMIN, or USER role).
+- **PATCH /:id:** Update a booking (requires ADMIN or SUPER_ADMIN role).
+- **PATCH /user/:id:** Cancel a booking (requires USER role).
+- **DELETE /:id:** Delete a booking (requires ADMIN, SUPER_ADMIN, or USER role).
+
+### Category Routes
+- **POST /:** Create or update a category (requires ADMIN or SUPER_ADMIN role).
+- **GET /:** Get all categories.
+- **GET /:id:** Get a single category.
+- **PATCH /:id:** Update a category (requires ADMIN or SUPER_ADMIN role).
+- **DELETE /:id:** Delete a category (requires ADMIN or SUPER_ADMIN role).
+
+### Event Routes
+- **POST /:** Create a new event (requires ADMIN or SUPER_ADMIN role).
+- **GET /:** Get all events.
+- **GET /:id:** Get a single event.
+- **PATCH /:id:** Update an event (requires ADMIN or SUPER_ADMIN role).
+- **DELETE /:id:** Delete an event (requires ADMIN or SUPER_ADMIN role).
+
+### FAQ Routes
+- **POST /:** Create a new FAQ (requires ADMIN or SUPER_ADMIN role).
+- **GET /user:** Get FAQs by user (requires ADMIN, SUPER_ADMIN, or USER role).
+- **GET /:** Get all FAQs.
+- **GET /:id:** Get a single FAQ.
+- **PATCH /:id:** Update a FAQ (requires ADMIN or SUPER_ADMIN role).
+- **DELETE /:id:** Delete a FAQ (requires ADMIN or SUPER_ADMIN role).
+
+### Feedback Routes
+- **POST /:** Create new feedback (requires USER role).
+- **GET /user:** Get feedbacks by user (requires USER role).
+- **GET /:** Get all feedbacks (requires ADMIN, SUPER_ADMIN, or USER role).
+- **GET /:id:** Get a single feedback (requires ADMIN, SUPER_ADMIN, or USER role).
+- **PATCH /:id:** Update feedback (requires ADMIN, SUPER_ADMIN, or USER role).
+- **DELETE /:id:** Delete feedback (requires ADMIN or SUPER_ADMIN role).
+
+### Mail Routes
+- **POST /:** Send an email.
+
+### Page Routes
+- **POST /:** Create a new page (requires ADMIN or SUPER_ADMIN role).
+- **GET /user:** Get pages by user (requires ADMIN, SUPER_ADMIN, or USER role).
+- **GET /:** Get all pages.
+- **GET /:id:** Get a single page.
+- **PATCH /:id:** Update a page (requires ADMIN or SUPER_ADMIN role).
+- **DELETE /:id:** Delete a page (requires ADMIN or SUPER_ADMIN role).
+
+### Review Routes
+- **POST /:** Create a new review (requires ADMIN, SUPER_ADMIN, or USER role).
+- **GET /user:** Get reviews by user (requires ADMIN, SUPER_ADMIN, or USER role).
+- **GET /:** Get all reviews.
+- **GET /:id:** Get a single review.
+- **PATCH /:id:** Update a review (requires ADMIN or SUPER_ADMIN role).
+- **DELETE /:id:** Delete a review (requires ADMIN or SUPER_ADMIN role).
+- **GET /events/:eventId:** Get reviews by event ID (requires ADMIN, SUPER_ADMIN, or USER role).
+
+### Subscriber Routes
+- **POST /:** Add a new subscriber.
+- **POST /send:** Send an email to subscribers (requires ADMIN or SUPER_ADMIN role).
+- **GET /:** Get all subscribers (requires ADMIN or SUPER_ADMIN role).
+- **DELETE /:id:** Delete a subscriber (requires ADMIN or SUPER_ADMIN role).
+
+### User Routes
+- **GET /profile:** Get user profile details (requires ADMIN, SUPER_ADMIN, or USER role).
+- **GET /get-all:** Get all users (requires ADMIN or SUPER_ADMIN role).
+- **GET /:id:** Get a user by ID.
+- **PATCH /profile:** Update user profile (requires ADMIN, SUPER_ADMIN, or USER role).
+- **PATCH /:id:** Update a user (requires ADMIN, SUPER_ADMIN, or USER role).
+- **DELETE /:id:** Delete a user (requires ADMIN or SUPER_ADMIN role).
+
+
+
+# API ENDPOINTS & DATA
 
 
 ### Authentication Endpoints (AuthRoutes)
