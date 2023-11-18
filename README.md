@@ -140,9 +140,7 @@ As the sole developer, I led the entire back-end development of GreenEcovents. M
 |                     |
 |                     |
 +---------------------+
-
-
-
+```
 
 
 ### 🚀 Features
