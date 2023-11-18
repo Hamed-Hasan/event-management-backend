@@ -14,6 +14,9 @@ As the sole developer, I led the entire back-end development of GreenEcovents. M
 
 
 
+## Entity-Relationship Diagram (ERD)
+
+```plaintext
 +---------------------+      +------------------------+      +----------------------+
 |        User         |      |        Category        |      |        Event         |
 +---------------------+      +------------------------+      +----------------------+
