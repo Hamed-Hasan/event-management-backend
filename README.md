@@ -2,9 +2,11 @@
 
 **View the live site [here](https://green-ecovents.vercel.app).**
 
-## Embrace the Heartbeat of GreenEcovents
+## Embrace the Heartbeat of GreenEcovents 🌿
 
-Welcome to the soulful core of GreenEcovents! 🌿 This repository cradles the intricate symphony of the server side, a masterpiece crafted by a lone dream-weaver immersed in the enchanting realms of TypeScript, Node.js, and Express.js. It's not just a backend; it's the pulsating heart of a visionary event management web application.
+![GreenAura Crest](https://i.ibb.co/pQ4jX6J/green-landing.png)
+
+Welcome to the soulful core of GreenEcovents!  This repository cradles the intricate symphony of the server side, a masterpiece crafted by a lone dream-weaver immersed in the enchanting realms of TypeScript, Node.js, and Express.js. It's not just a backend; it's the pulsating heart of a visionary event management web application.
 
 ## Unveiling the Magic
 
